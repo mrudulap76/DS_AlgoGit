@@ -1,0 +1,55 @@
+
+#Author: your.email@your.domain.com
+#Keywords Summary :
+#Feature: List of scenarios.
+#Scenario: Business rule through list of steps with arguments.
+#Given: Some precondition step
+#When: Some key actions
+#Then: To observe outcomes or validation
+#And,But: To enumerate more Given,When,Then steps
+#Scenario Outline: List of steps for data-driven as an Examples and <placeholder>
+#Examples: Container for s table
+#Background: List of steps run before each of the scenarios
+#""" (Doc Strings)
+#| (Data Tables)
+#@ (Tags/Labels):To group Scenarios
+#<> (placeholder)
+#""
+## (Comments)
+#Sample Feature Definition Template
+@taglogin
+Feature: Sign In feature
+  I want to use this template for my feature file
+
+  @tag1
+  Scenario: Sign in
+    Given The user opens Home Page
+    When The user clicks Sign-in
+    Then It should display an error Please fill out this field below Username textbox
+   
+
+  @tag2
+  Scenario Outline: Positive and Negative scenario for login
+    Given The user is in the Sign in page
+    When User gets the values from excel Sheet Name <Sheet Name> , Testcase <Test case>
+    Then It should display an error Please fill out this field below Password textbox
+    Then It should display Invalid username and password
+    Then User should be redirected to Home Page with the message You are logged in and with the user name on the top
+    Then System should alert user Please check your user id
+    Then System should alert user Please check your password
+    
+    Examples: 
+       |Sheet Name	|Test case |
+       |Sheet1|1|       
+       |Sheet1|2|
+       |Sheet1|3|
+       |Sheet1|4|
+       |Sheet1|5|
+       
+    @tag1
+    Scenario: Sign in
+    Given The user is in the Home page after logged in
+    When The user clicks Sign out
+    Then The user enters a valid user id + valid password
+      
+       
